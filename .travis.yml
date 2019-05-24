@@ -1,2 +1,5 @@
 language:go
 os: linux
+script:
+- ls
+- pwd
