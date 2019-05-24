@@ -8,6 +8,7 @@ before_script:
 - wget https://github.com/neo4j-drivers/seabolt/releases/download/v1.7.3/seabolt-1.7.3-Linux-ubuntu-$(lsb_release -rs).deb
 - sudo dpkg -i seabolt-1.7.3-Linux-ubuntu-$(lsb_release -rs).deb
 - sudo apt-get install -y libssl-dev pkg-config build-essential make cmake
+- go get github.com/neo4j/neo4j-go-driver/neo4j
 
 script:
 - go get github.com/jeet-parekh/neo4j || true
