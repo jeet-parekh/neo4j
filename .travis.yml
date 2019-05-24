@@ -1,5 +1,7 @@
 language: go
 os: linux
 script:
-- ls
+- go get github.com/jeet-parekh/neo4j
 - pwd
+- mkdir private
+- git clone https://$PAT@github.com/jeet-parekh/neo4j-private private
