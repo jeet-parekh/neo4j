@@ -15,3 +15,4 @@ script:
 - pwd
 - mkdir private
 - git clone https://$PAT@github.com/jeet-parekh/neo4j-private private
+- go build -tags "seabolt_static oss" -o "neo4j-linux"
