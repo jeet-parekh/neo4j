@@ -1,11 +1,11 @@
 language: go
-os: linux
-dist: xenial
-sudo: required
 
 jobs:
   include:
     - name: "linux"
+      os: linux
+      dist: xenial
+      sudo: required
       before_script:
       - uname -a
       - wget https://github.com/neo4j-drivers/seabolt/releases/download/v1.7.3/seabolt-1.7.3-Linux-ubuntu-$(lsb_release -rs).deb
