@@ -2,7 +2,7 @@ language: go
 
 jobs:
   include:
-    - name: "linux"
+    - name: linux
       os: linux
       dist: xenial
       sudo: required
@@ -19,7 +19,13 @@ jobs:
       - git clone https://$PAT@github.com/jeet-parekh/neo4j-private private
       - go build -tags "seabolt_static oss" -o "neo4j-linux"
 
-    - name: "macos"
+      deploy:
+        provider: releases
+        api_key: $PAT
+        skip_cleanup: true
+        file: neo4j-linux
+
+    - name: macos
       os: osx
       osx_image: xcode10.2
 
@@ -34,4 +40,10 @@ jobs:
       - go get github.com/jeet-parekh/neo4j || true
       - mkdir private
       - git clone https://$PAT@github.com/jeet-parekh/neo4j-private private
-      - go build -tags "seabolt_static oss" -o "neo4j-linux"
+      - go build -tags "seabolt_static oss" -o "neo4j-macos"
+
+      deploy:
+        provider: releases
+        api_key: $PAT
+        skip_cleanup: true
+        file: neo4j-macos
