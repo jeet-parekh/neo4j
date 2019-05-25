@@ -6,16 +6,31 @@ jobs:
       os: linux
       dist: xenial
       sudo: required
+
       before_script:
-      - uname -a
-      - wget https://github.com/neo4j-drivers/seabolt/releases/download/v1.7.3/seabolt-1.7.3-Linux-ubuntu-$(lsb_release -rs).deb
-      - sudo dpkg -i seabolt-1.7.3-Linux-ubuntu-$(lsb_release -rs).deb
+      - wget https://github.com/neo4j-drivers/seabolt/releases/download/v1.7.3/seabolt-1.7.3-Linux-ubuntu-16.04.deb
+      - sudo dpkg -i seabolt-1.7.3-Linux-ubuntu-16.04.deb
       - sudo apt-get install -y libssl-dev pkg-config build-essential make cmake
       - go get github.com/neo4j/neo4j-go-driver/neo4j
 
       script:
       - go get github.com/jeet-parekh/neo4j || true
-      - pwd
+      - mkdir private
+      - git clone https://$PAT@github.com/jeet-parekh/neo4j-private private
+      - go build -tags "seabolt_static oss" -o "neo4j-linux"
+
+    - name: "macos"
+      os: osx
+
+      before_script:
+      - curl -LO https://github.com/neo4j-drivers/seabolt/releases/download/v1.7.4/seabolt-1.7.4-Darwin.tar.gz
+      - tar -zxf seabolt-1.7.4-Darwin.tar.gz
+      - export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:`pwd`/seabolt-1.7.4-Darwin/usr/local/share/pkgconfig
+      - export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:`pwd`/seabolt-1.7.4-Darwin/usr/local/lib
+      - go get github.com/neo4j/neo4j-go-driver/neo4j
+
+      script:
+      - go get github.com/jeet-parekh/neo4j || true
       - mkdir private
       - git clone https://$PAT@github.com/jeet-parekh/neo4j-private private
       - go build -tags "seabolt_static oss" -o "neo4j-linux"
