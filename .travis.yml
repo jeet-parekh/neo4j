@@ -47,3 +47,12 @@ jobs:
         api_key: $PAT
         skip_cleanup: true
         file: neo4j-macos
+
+    - name: windows
+      os: windows
+
+      before_script:
+        - dir
+        - curl -LO http://ftp.gnome.org/pub/gnome/binaries/win32/dependencies/pkg-config_0.26-1_win32.zip
+        - 7z e pkg-config_0.26-1_win32.zip
+        - dir
