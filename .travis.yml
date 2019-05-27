@@ -54,7 +54,7 @@ jobs:
       before_script:
         - dir
         - curl -LO http://ftp.gnome.org/pub/gnome/binaries/win32/dependencies/pkg-config_0.26-1_win32.zip
-        - 7z e pkg-config_0.26-1_win32.zip -o *
+        - 7z e pkg-config_0.26-1_win32.zip -opkg-config
         - dir
         - pacman -Syu
         - pacman -S mingw-w64-x86_64-pkg-config
