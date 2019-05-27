@@ -56,6 +56,6 @@ jobs:
         - curl -LO http://ftp.gnome.org/pub/gnome/binaries/win32/dependencies/pkg-config_0.26-1_win32.zip
         - 7z e pkg-config_0.26-1_win32.zip -opkg-config
         - dir
-        - choco install msys2
+        - choco install -y msys2
         - pacman -Syu
         - pacman -S mingw-w64-x86_64-pkg-config
